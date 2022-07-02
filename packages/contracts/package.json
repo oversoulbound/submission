@@ -1,5 +1,5 @@
 {
-  "name": "@oversoulbound/contracts",
+  "name": "@oversoul/contracts",
   "version": "0.0.1",
   "scripts": {
     "lint": "run-s lint:*",
