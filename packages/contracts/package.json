@@ -1,7 +1,6 @@
 {
   "name": "@tokyohackerhouse/contracts",
   "version": "0.0.1",
-  "private": true,
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.6",
     "@nomiclabs/hardhat-etherscan": "^3.1.0",
@@ -36,5 +35,6 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.7.0"
-  }
+  },
+  "private": true
 }
