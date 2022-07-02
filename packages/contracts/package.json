@@ -1,5 +1,5 @@
 {
-  "name": "@tokyohackerhouse/contracts",
+  "name": "@oversoulbound/contracts",
   "version": "0.0.1",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.6",

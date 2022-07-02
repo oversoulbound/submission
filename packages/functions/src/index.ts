@@ -1,9 +1,23 @@
-import * as functions from "firebase-functions";
+import * as admin from "firebase-admin";
+admin.initializeApp();
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-export const helloWorld = functions.https.onRequest((request, response) => {
-  functions.logger.info("Hello logs!", { structuredData: true });
-  response.send("Hello from Firebase!");
-});
+interface Files {
+  [key: string]: string;
+}
+
+const files: Files = {
+  aggregate: "./handlers/aggregate",
+  api: "./handlers/api",
+};
+
+const loadFunctions = (filesObj: Files) => {
+  Object.entries(filesObj).forEach(([key, value]) => {
+    const { FUNCTION_NAME } = process.env;
+    const shouldExport = !FUNCTION_NAME || FUNCTION_NAME.startsWith(key);
+    if (shouldExport) {
+      exports[key] = require(value);
+    }
+  });
+};
+
+loadFunctions(files);
