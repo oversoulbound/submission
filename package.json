@@ -1,0 +1,28 @@
+{
+  "name": "tokyohackerhouse",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "workspaces": [
+    "packages/**"
+  ],
+  "scripts": {
+    "dev": "run-p dev:*",
+    "dev:web": "yarn workspace @tokyohackerhouse/web dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tokyohackerhouse/submission.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tokyohackerhouse/submission/issues"
+  },
+  "homepage": "https://github.com/tokyohackerhouse/submission#readme",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
