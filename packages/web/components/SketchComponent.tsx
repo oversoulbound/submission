@@ -1,12 +1,20 @@
 import dynamic from "next/dynamic";
 import p5Types from "p5";
+import React from "react";
+
+import { NFT } from "../types/nft";
 
 const Sketch = dynamic(import("react-p5"), {
   loading: () => <></>,
   ssr: false,
 });
 
-export const SketchComponent = () => {
+interface SketchComponentProps {
+  nfts: NFT[];
+}
+
+export const SketchComponent: React.FC<SketchComponentProps> = ({ nfts }) => {
+  console.log(nfts);
   const bubbles: any[] = [];
   const soulbounds: any[] = [];
   let c;

@@ -131,9 +131,3 @@ dist
 
 # misc
 .DS_Store
-
-# firebase
-.firebase
-firebase-debug.log
-firestore-debug.log
-ui-debug.log
