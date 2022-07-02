@@ -1,17 +1,16 @@
-import * as functions from "firebase-functions";
 import { ethers } from "ethers";
+import { getFirestore } from "firebase-admin/firestore";
+import * as functions from "firebase-functions";
 
 import {
-  SPAN_AGGREGATE,
+  COLLECTION_NAME,
   REGION,
   RPC,
   SBT_CONTRACT_ADDRESS,
-  COLLECTION_NAME,
+  SPAN_AGGREGATE,
 } from "../config";
 import { IERC1155_ABI } from "../lib/ethers/IERC1155";
 import { IKudos_ABI } from "../lib/ethers/IKudos";
-
-import { getFirestore } from "firebase-admin/firestore";
 
 //FIXME: blockNumber handling
 //FIXME: use the graph

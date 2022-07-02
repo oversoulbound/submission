@@ -8,11 +8,24 @@
     "packages/**"
   ],
   "scripts": {
-    "dev": "run-p dev:*",
+    "ci": "yarn lint && yarn build",
+    "lint": "run-p lint:*",
+    "lint:contracts": "yarn workspace @oversoulbound/contracts lint",
+    "lint:functions": "yarn workspace @oversoulbound/functions lint",
+    "lint:web": "yarn workspace @oversoulbound/web lint",
+    "fix": "run-p fix:*",
+    "fix:contracts": "yarn workspace @oversoulbound/contracts fix",
+    "fix:functions": "yarn workspace @oversoulbound/functions fix",
+    "fix:web": "yarn workspace @oversoulbound/web fix",
     "predev": "yarn workspace @oversoulbound/functions build",
-    "dev:web": "yarn workspace @oversoulbound/web dev",
+    "dev": "run-p dev:*",
     "dev:functions": "yarn workspace @oversoulbound/functions dev",
-    "dev:firebase": "firebase emulators:start --only functions,firestore,pubsub"
+    "dev:web": "yarn workspace @oversoulbound/web dev",
+    "dev:firebase": "firebase emulators:start --only functions,firestore,pubsub",
+    "build": "run-p build:*",
+    "build:contracts": "yarn workspace @oversoulbound/contracts build",
+    "build:functions": "yarn workspace @oversoulbound/functions build",
+    "build:web": "yarn workspace @oversoulbound/web build"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

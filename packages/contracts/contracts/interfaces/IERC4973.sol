@@ -4,8 +4,8 @@ pragma solidity ^0.8.6;
 /// @title Account-bound tokens
 /// @dev See https://eips.ethereum.org/EIPS/eip-4973
 ///  Note: the ERC-165 identifier for this interface is 0x5164cf47.
-interface IERC4973 /* is ERC165, ERC721Metadata */ {
-
+/* is ERC165, ERC721Metadata */
+interface IERC4973 {
   /// @dev This emits when a new token is created and bound to an account by
   /// any mechanism.
   /// Note: For a reliable `from` parameter, retrieve the transaction's
@@ -31,7 +31,7 @@ interface IERC4973 /* is ERC165, ERC721Metadata */ {
   /// @param tokenId The identifier for an ABT
   /// @return The address of the owner bound to the ABT
   function ownerOf(uint256 tokenId) external view returns (address);
-  
+
   /// @notice Destroys `tokenId`. At any time, an ABT receiver must be able to
   ///  disassociate themselves from an ABT publicly through calling this
   ///  function.

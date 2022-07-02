@@ -1,13 +1,14 @@
 import dynamic from "next/dynamic";
 import p5Types from "p5";
+
 const Sketch = dynamic(import("react-p5"), {
   loading: () => <></>,
   ssr: false,
 });
 
 export const SketchComponent = () => {
-  let bubbles: any[] = [];
-  let soulbounds: any[] = [];
+  const bubbles: any[] = [];
+  const soulbounds: any[] = [];
   let c;
   const preload = (p5: p5Types) => {
     for (let i = 1; i <= 4; i++) {
@@ -34,7 +35,7 @@ export const SketchComponent = () => {
         bubbles.push(new colorbubble(p5, j));
       }
     }
-    for (let colorbubble of bubbles) {
+    for (const colorbubble of bubbles) {
       colorbubble.move();
       colorbubble.delete();
       colorbubble.display();
@@ -70,7 +71,7 @@ export const SketchComponent = () => {
         this.pos.x > this.p5.width + this.size * 2 ||
         this.pos.x < 0 - this.size * 2
       ) {
-        let index = bubbles.indexOf(this);
+        const index = bubbles.indexOf(this);
         bubbles.splice(index, 1);
       }
     }

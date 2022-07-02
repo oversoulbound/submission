@@ -3,7 +3,12 @@
   "version": "0.0.1",
   "license": "Unlicense",
   "scripts": {
-    "lint": "eslint --ext .js,.ts .",
+    "lint": "run-s lint:*",
+    "lint:eslint": "eslint '**/*.{js,ts,jsx,tsx}' --ignore-path .gitignore",
+    "lint:prettier": "prettier '**/*.{json,sol,md}' --ignore-path .gitignore --check",
+    "fix": "run-s fix:*",
+    "fix:eslint": "yarn lint:eslint --fix",
+    "fix:prettier": "yarn lint:prettier --write",
     "dev": "tsc --watch",
     "build": "tsc"
   },
