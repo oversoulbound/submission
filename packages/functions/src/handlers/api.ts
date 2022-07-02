@@ -1,7 +1,7 @@
-import * as functions from "firebase-functions";
 import { getFirestore } from "firebase-admin/firestore";
+import * as functions from "firebase-functions";
 
-import { REGION, COLLECTION_NAME } from "../config";
+import { COLLECTION_NAME,REGION } from "../config";
 
 module.exports = functions.region(REGION).https.onRequest(async (req, res) => {
   let address = req.query.address;

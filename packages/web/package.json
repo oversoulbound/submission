@@ -3,10 +3,15 @@
   "version": "0.0.1",
   "license": "Unlicense",
   "scripts": {
+    "lint": "run-s lint:*",
+    "lint:eslint": "eslint '**/*.{js,ts,jsx,tsx}' --ignore-path .gitignore",
+    "lint:prettier": "prettier '**/*.{json,sol,md}' --ignore-path .gitignore --check",
+    "fix": "run-s fix:*",
+    "fix:eslint": "yarn lint:eslint --fix",
+    "fix:prettier": "yarn lint:prettier --write",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
     "next": "12.2.0",
@@ -20,6 +25,9 @@
     "@types/react-dom": "18.0.5",
     "eslint": "8.19.0",
     "eslint-config-next": "12.2.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "typescript": "4.7.4"
   },
   "private": true
