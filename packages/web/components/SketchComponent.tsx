@@ -50,10 +50,7 @@ export const SketchComponent = () => {
     p5: any;
     soulIndex: number;
     constructor(p5: p5Types, soulIndex: number) {
-      this.pos = p5.createVector(
-        p5.randomGaussian(p5.width / 2, 10),
-        p5.random(0, p5.height)
-      );
+      this.pos = p5.createVector(p5.randomGaussian(p5.width / 2, 10), p5.random(0, p5.height));
       this.vel = p5.createVector(0, 0);
       this.acc = p5.createVector(p5.random(-0.1, 0.1), -0.05);
       this.size = p5.random(1, 20);
@@ -67,10 +64,7 @@ export const SketchComponent = () => {
     }
 
     delete() {
-      if (
-        this.pos.x > this.p5.width + this.size * 2 ||
-        this.pos.x < 0 - this.size * 2
-      ) {
+      if (this.pos.x > this.p5.width + this.size * 2 || this.pos.x < 0 - this.size * 2) {
         const index = bubbles.indexOf(this);
         bubbles.splice(index, 1);
       }
@@ -88,14 +82,5 @@ export const SketchComponent = () => {
     p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
   };
 
-  return (
-    <Sketch
-      preload={preload}
-      setup={setup}
-      draw={draw}
-      windowResized={windowResized}
-    />
-  );
+  return <Sketch preload={preload} setup={setup} draw={draw} windowResized={windowResized} />;
 };
-
-export default SketchComponent;
