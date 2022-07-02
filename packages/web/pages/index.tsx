@@ -1,14 +1,14 @@
 import type { NextPage } from "next";
 
+import { ConnectWallet } from "../components/ConnectWallet";
 import { Layout } from "../components/Layout";
-import { SketchComponent } from "../components/SketchComponent";
 
-const Home: NextPage = () => {
+const IndexPage: NextPage = () => {
   return (
     <Layout>
-      <SketchComponent />
+      <ConnectWallet />
     </Layout>
   );
 };
 
-export default Home;
+export default IndexPage;

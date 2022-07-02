@@ -1,12 +1,17 @@
 import dynamic from "next/dynamic";
 import p5Types from "p5";
+import React from "react";
 
 const Sketch = dynamic(import("react-p5"), {
   loading: () => <></>,
   ssr: false,
 });
 
-export const SketchComponent = () => {
+export interface SketchComponentProps {
+  address: string;
+}
+
+export const SketchComponent: React.FC<SketchComponentProps> = ({ address }) => {
   const bubbles: any[] = [];
   const soulbounds: any[] = [];
   let c;
