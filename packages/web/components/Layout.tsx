@@ -11,7 +11,7 @@ export interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <Flex minHeight={"100vh"} direction={"column"} backgroundColor="black">
+    <Flex minHeight={"100vh"} direction={"column"} backgroundColor="gray.900">
       <Metatag />
       <Header />
       <Box flex={1}>
