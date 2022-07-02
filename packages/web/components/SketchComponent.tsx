@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import p5Types from "p5";
 import React from "react";
+import Matter from "matter-js";
 
 import { NFT } from "../types/nft";
 
@@ -15,80 +16,106 @@ interface SketchComponentProps {
 
 export const SketchComponent: React.FC<SketchComponentProps> = ({ nfts }) => {
   console.log(nfts);
-  const bubbles: any[] = [];
-  const soulbounds: any[] = [];
-  let c;
+  let { Engine, Bodies, Composite, Runner } = Matter;
+
+  let engine: any;
+  let subjects: any[] = [];
+  let runner;
+  let ground, wallA, wallB;
+  let font: any;
+
   const preload = (p5: p5Types) => {
-    for (let i = 1; i <= 4; i++) {
-      soulbounds.push(p5.loadImage(`soulbounds${i}.png`));
-    }
+    font = p5.loadFont("GentiumBookPlus-Bold.ttf");
   };
 
   const setup = (p5: p5Types, canvasParentRef: Element) => {
-    p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef);
-    // p5.colorMode(p5.HSB, p5.width, p5.height, 100);
+    console.log(canvasParentRef);
+    p5.createCanvas(500, 500).parent(canvasParentRef);
     p5.noStroke();
-    for (let j = 0; j < 4; j++) {
-      for (let i = 0; i < 200; i++) {
-        bubbles.push(new colorbubble(p5, j));
-      }
-    }
+    engine = Engine.create();
+    ground = Bodies.rectangle(200, 500, 600, 20, {
+      isStatic: true,
+    });
+    wallA = Bodies.rectangle(0, 200, 20, 500, {
+      isStatic: true,
+    });
+    wallB = Bodies.rectangle(500, 200, 20, 500, {
+      isStatic: true,
+    });
+
+    engine.gravity.x = 0;
+    engine.gravity.y = 1;
+    engine.gravity.scale = 0.0003;
+
+    Composite.add(engine.world, [ground, wallA, wallB]);
+    runner = Runner.create();
+
+    Runner.run(runner, engine);
+    p5.colorMode(p5.HSB, 360, 100, 100, 100);
+    p5.textFont(font);
+    p5.textSize(25);
   };
+
+  let count = 0;
 
   const draw = (p5: p5Types) => {
-    p5.clear();
-    p5.background(51);
-    for (let j = 0; j < 4; j++) {
-      for (let i = 0; i < 100; i++) {
-        bubbles.push(new colorbubble(p5, j));
+    let phrases: string[] = [];
+    for (let i = 0; i < nfts.length; i++) {
+      const words = nfts[i].phrase.split(" ");
+      for (let j = 0; j < words.length; j++) {
+        phrases.push(words[j]);
       }
     }
-    for (const colorbubble of bubbles) {
-      colorbubble.move();
-      colorbubble.delete();
-      colorbubble.display();
+    p5.clear();
+    p5.background(15);
+    p5.fill(185, 10, 100);
+    for (var i = 0; i < subjects.length; i++) {
+      subjects[i].show();
     }
+    p5.frameRate(10);
+    // @ts-ignore
+    p5.drawingContext.shadowBlur = 32;
+    // @ts-ignore
+    p5.drawingContext.shadowColor = p5.color(27, 7, 99);
+    subjects.push(new Subject(250 - p5.random(-10, 10), 0, 20, 20, phrases[count % phrases.length], p5, engine));
+    count++;
+
+    // if (subjects.length > 500) {
+    //   subjects.shift();
+    // }
   };
 
-  class colorbubble {
-    pos: any;
-    vel: any;
-    acc: any;
-    size: any;
-    p5: any;
-    soulIndex: number;
-    constructor(p5: p5Types, soulIndex: number) {
-      this.pos = p5.createVector(p5.randomGaussian(p5.width / 2, 10), p5.random(0, p5.height));
-      this.vel = p5.createVector(0, 0);
-      this.acc = p5.createVector(p5.random(-0.1, 0.1), -0.05);
-      this.size = p5.random(1, 20);
+  // const windowResized = (p5: p5Types) => {
+  //   p5.resizeCanvas(500, 500);
+  // };
+
+  class Subject {
+    body: any;
+    restitution = 0.8;
+    composite: any;
+    p5: p5Types;
+    frase = "";
+
+    constructor(x: any, y: any, w: any, h: any, frase: string, p5: p5Types, engine: any) {
+      this.body = Bodies.rectangle(x, y, w, h);
+      Composite.add(engine.world, this.body);
       this.p5 = p5;
-      this.soulIndex = soulIndex;
+      this.frase = frase;
     }
 
-    move() {
-      this.vel.add(this.acc);
-      this.pos.add(this.vel);
-    }
+    show() {
+      var angle = this.body.angle;
+      this.p5.push();
+      this.p5.translate(this.body.position.x, this.body.position.y);
+      this.p5.rotate(angle);
+      this.p5.rectMode(this.p5.CENTER);
+      this.p5.textAlign(this.p5.CENTER);
 
-    delete() {
-      if (this.pos.x > this.p5.width + this.size * 2 || this.pos.x < 0 - this.size * 2) {
-        const index = bubbles.indexOf(this);
-        bubbles.splice(index, 1);
-      }
-    }
+      this.p5.text(this.frase, 0, 0);
 
-    display() {
-      this.p5.noStroke();
-      c = soulbounds[this.soulIndex].get(this.pos.x - 50, this.pos.y);
-      this.p5.fill(c);
-      this.p5.ellipse(this.pos.x, this.pos.y, this.size);
+      this.p5.pop();
     }
   }
 
-  const windowResized = (p5: p5Types) => {
-    p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
-  };
-
-  return <Sketch preload={preload} setup={setup} draw={draw} windowResized={windowResized} />;
+  return <Sketch preload={preload} setup={setup} draw={draw} />;
 };
