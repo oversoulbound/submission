@@ -1,7 +1,7 @@
 {
   "name": "@tokyohackerhouse/web",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.1",
+  "license": "Unlicense",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -21,5 +21,6 @@
     "eslint": "8.19.0",
     "eslint-config-next": "12.2.0",
     "typescript": "4.7.4"
-  }
+  },
+  "private": true
 }
