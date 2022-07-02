@@ -1,9 +1,22 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
 
-import type { AppProps } from 'next/app'
+import { ChakraProvider } from "@chakra-ui/react";
+import { ExternalProvider, Web3Provider } from "@ethersproject/providers";
+import { Web3ReactProvider } from "@web3-react/core";
+import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  function getLibrary(provider: ExternalProvider) {
+    return new Web3Provider(provider, "any");
+  }
+
+  return (
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </Web3ReactProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;
