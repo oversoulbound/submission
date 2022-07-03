@@ -8,6 +8,12 @@ https://oversoul.vercel.app/
 
 https://oversoul.vercel.app/0x0730Ad49738206C0f5fdfB1C1f4448Ec9D2edb07
 
+### Mint NFT
+
+Please mint your NFT here
+
+https://mumbai.polygonscan.com/address/0xE134eC23f5e760dEC2689c67108F181E4f76E75E#code
+
 ### Deployed Contract
 
 #### Mumbai
