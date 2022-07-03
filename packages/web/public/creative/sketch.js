@@ -19,7 +19,7 @@ let sketch = (p5) => {
     font = p5.loadFont("GentiumBookPlus-Bold.ttf");
     // apiでnfts取得
     console.log(contractAddress, "contractAddress");
-    let url = `http://localhost:3001/api/${contractAddress}`;
+    let url = `https://oversoul.vercel.app/api/${contractAddress}`;
     p5.httpGet(url, "json", false, function (response) {
       nfts = response;
       console.log(nfts);

@@ -3,11 +3,7 @@ import { ethers } from "ethers";
 import type { GetServerSideProps, NextPage } from "next";
 
 import { Layout } from "../components/Layout";
-<<<<<<< HEAD
 import { alchemy } from "../lib/alchemy";
-=======
-import { SketchComponent } from "../components/SketchComponent";
->>>>>>> c0e8c0bb09f176baec9eb0d5526163e882ddb49f
 import { NFT } from "../types/nft";
 
 export const SBT_CONTRACT_ADDRESSES = ["0x60576A64851C5B42e8c57E3E4A5cF3CF4eEb2ED6"];
@@ -17,9 +13,10 @@ interface IndexPageProps {
 }
 
 const IndexPage: NextPage<IndexPageProps> = ({ nfts }) => {
+  const iframeSource = "https://opensea.io/";
   return (
     <Layout>
-      <></>
+      <div dangerouslySetInnerHTML={{ __html: iframeSource }}></div>
     </Layout>
   );
 };
