@@ -6,7 +6,7 @@ import "solidity-coverage";
 import "hardhat-deploy";
 
 import * as dotenv from "dotenv";
-import { HardhatUserConfig, task } from "hardhat/config";
+import { HardhatUserConfig } from "hardhat/config";
 
 dotenv.config();
 

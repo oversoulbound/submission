@@ -76,17 +76,15 @@ contract Mediator is ERC165, IERC721, IERC721Metadata {
   function tokenURI(uint256 tokenId) public view override returns (string memory) {
     address owner = tokenIdToAddress(tokenId);
     string memory ownerAddressString = _bytesToString(abi.encodePacked(owner));
-    return
-      string(
-        abi.encodePacked(
-          '{"name":"Oversoul Mediator #',
-          Strings.toString(tokenId),
-          '","description": "A visualised onchain identity with SBT"',
-          '","animation_url":"',
-          abi.encodePacked(animationURLBase, ownerAddressString),
-          "}"
-        )
-      );
+    bytes memory metadata = abi.encodePacked(
+      '{"name":"Oversoul Mediator #',
+      Strings.toString(tokenId),
+      '","description": "A visualised onchain identity with SBT"',
+      ',"animation_url":"',
+      abi.encodePacked(animationURLBase, ownerAddressString),
+      '"}'
+    );
+    return string(abi.encodePacked("data:application/json;base64,", Base64.encode(metadata)));
   }
 
   function supportsInterface(bytes4 interfaceId) public view override(ERC165, IERC165) returns (bool) {

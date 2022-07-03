@@ -2,6 +2,7 @@ import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { expect } from "chai";
 import { ethers } from "hardhat";
 
+import { animationURIBase } from "../lib/constant";
 import { Mediator } from "../typechain";
 
 const ERC721_INTERFACE_ID = "0x80ac58cd";
@@ -11,12 +12,10 @@ describe("Mediator", function () {
   let mediator: Mediator;
   let signer: SignerWithAddress;
 
-  const image = "https://gateway.pinata.cloud/ipfs/QmTXEs1cMkzxFDDhRG1X5MUTx796nweghTwVQxQ79LKqLW/?seed=";
-
   beforeEach(async function () {
     [signer] = await ethers.getSigners();
     const Mediator = await ethers.getContractFactory("Mediator");
-    mediator = await Mediator.deploy(image);
+    mediator = await Mediator.deploy(animationURIBase);
     await mediator.deployed();
   });
 
