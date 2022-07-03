@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
-  const { data } = await axios.get(`http://localhost:3000/api/${context.params.address}`);
+  const { data } = await axios.get(`https://oversoul.vercel.app/api/${context.params.address}`);
   const nfts = data;
   return {
     props: {
