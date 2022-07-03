@@ -10,13 +10,12 @@ import { SketchComponent } from "../components/SketchComponent";
 
 export const SBT_CONTRACT_ADDRESSES = ["0x60576A64851C5B42e8c57E3E4A5cF3CF4eEb2ED6"];
 
-interface IndexPageProps {
+interface AddressPageProps {
   nfts: NFT[];
 }
 
-const IndexPage: NextPage<IndexPageProps> = ({ nfts }) => {
-  const iframeSource =
-    "https://oversoul.vercel.app/creative/index.html?seed=0xB6Ac3Fe610d1A4af359FE8078d4c350AB95E812b";
+const AddressPage: NextPage<AddressPageProps> = ({ nfts }) => {
+  const iframeSource = "https://opensea.io/";
   return (
     <Layout>
       <SketchComponent nfts={nfts} />
@@ -24,7 +23,7 @@ const IndexPage: NextPage<IndexPageProps> = ({ nfts }) => {
   );
 };
 
-export default IndexPage;
+export default AddressPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   if (
