@@ -9,7 +9,7 @@ const cors = Cors({
   methods: ["GET", "HEAD"],
 });
 
-const runMiddleware = (req: NextApiRequest, res: NextApiResponse, fn: Cors) => {
+const runMiddleware = (req: NextApiRequest, res: NextApiResponse, fn: any) => {
   return new Promise((resolve, reject) => {
     fn(req, res, (result: unknown) => {
       if (result instanceof Error) {
