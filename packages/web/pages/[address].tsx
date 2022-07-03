@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 import type { GetServerSideProps, NextPage } from "next";
 
 import { Layout } from "../components/Layout";
-import { SketchComponent } from "../components/SketchComponent";
+import { alchemy } from "../lib/alchemy";
 import { NFT } from "../types/nft";
 
 export const SBT_CONTRACT_ADDRESSES = ["0x60576A64851C5B42e8c57E3E4A5cF3CF4eEb2ED6"];
@@ -13,9 +13,10 @@ interface AddressPageProps {
 }
 
 const AddressPage: NextPage<AddressPageProps> = ({ nfts }) => {
+  const iframeSource = "https://opensea.io/";
   return (
     <Layout>
-      <SketchComponent nfts={nfts} />
+      <div dangerouslySetInnerHTML={{ __html: iframeSource }}></div>
     </Layout>
   );
 };
