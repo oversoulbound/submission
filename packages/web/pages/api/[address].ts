@@ -5,6 +5,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { alchemy } from "../../lib/alchemy";
 import { NFT } from "../../types/nft";
 
+
+// THIS IS UPDATE TO SUPPORT MORE PROTOCOL, THIS IS MANAGED BY DAO MODEL
 const cors = Cors({
   methods: ["GET", "HEAD"],
 });

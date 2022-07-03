@@ -15,6 +15,7 @@
     "fix": "run-p fix:*",
     "fix:contracts": "yarn workspace @oversoul/contracts fix",
     "fix:web": "yarn workspace @oversoul/web fix",
+    "test": "yarn workspace @oversoul/contracts test",
     "dev": "run-p dev:*",
     "dev:web": "yarn workspace @oversoul/web dev",
     "build": "run-p build:*",
