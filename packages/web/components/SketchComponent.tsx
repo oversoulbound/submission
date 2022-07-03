@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import p5Types from "p5";
 import React from "react";
 import Matter from "matter-js";
+import { useBreakpointValue } from "@chakra-ui/react";
 
 import { NFT } from "../types/nft";
 
@@ -25,6 +26,8 @@ export const SketchComponent: React.FC<SketchComponentProps> = ({ nfts }) => {
   let font: any;
   let image: any;
 
+  const canvasWidth = useBreakpointValue({ base: 400, md: 500 });
+
   const preload = (p5: p5Types) => {
     image = p5.loadImage("creative/polygon.png");
     font = p5.loadFont("creative/GentiumBookPlus-Bold.ttf");
@@ -32,7 +35,7 @@ export const SketchComponent: React.FC<SketchComponentProps> = ({ nfts }) => {
 
   const setup = (p5: p5Types, canvasParentRef: Element) => {
     console.log(canvasParentRef);
-    p5.createCanvas(500, 500).parent(canvasParentRef);
+    p5.createCanvas(canvasWidth as number, 500).parent(canvasParentRef);
     p5.noStroke();
     engine = Engine.create();
     ground = Bodies.rectangle(200, 500, 600, 20, {
@@ -82,7 +85,17 @@ export const SketchComponent: React.FC<SketchComponentProps> = ({ nfts }) => {
     p5.drawingContext.shadowBlur = 64;
     // @ts-ignore
     p5.drawingContext.shadowColor = p5.color(27, 7, 99);
-    subjects.push(new Subject(250 - p5.random(-50, 50), 500, 20, 20, phrases[count % phrases.length], p5, engine));
+    subjects.push(
+      new Subject(
+        (canvasWidth as number) / 2 - p5.random(-50, 50),
+        500,
+        20,
+        20,
+        phrases[count % phrases.length],
+        p5,
+        engine
+      )
+    );
     count++;
 
     // if (subjects.length > 500) {
