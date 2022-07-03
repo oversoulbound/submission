@@ -3,7 +3,6 @@ import { ethers } from "ethers";
 import type { GetServerSideProps, NextPage } from "next";
 
 import { Layout } from "../components/Layout";
-import { SketchComponent } from "../components/SketchComponent";
 import { alchemy } from "../lib/alchemy";
 import { NFT } from "../types/nft";
 
@@ -16,7 +15,7 @@ interface IndexPageProps {
 const IndexPage: NextPage<IndexPageProps> = ({ nfts }) => {
   return (
     <Layout>
-      <SketchComponent nfts={nfts} />
+      <></>
     </Layout>
   );
 };
