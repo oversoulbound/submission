@@ -21,7 +21,7 @@ const IndexPage: NextPage<IndexPageProps> = ({ nfts }) => {
         <ConnectWallet />
         <Grid templateColumns="repeat(3, 1fr)" gap={6}>
           {nfts.map((nft, i) => {
-            const [, address] = nft.phrase.split("#");
+            const [, address] = nft.phrase.split("of ");
             return (
               <GridItem key={i}>
                 <Link to={`/${address}`}>
