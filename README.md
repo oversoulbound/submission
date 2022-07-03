@@ -14,6 +14,10 @@ Please mint your NFT here
 
 https://mumbai.polygonscan.com/address/0xE134eC23f5e760dEC2689c67108F181E4f76E75E#code
 
+Please mint your SBT here
+
+https://mintkudos.xyz/claim/1354
+
 ### Deployed Contract
 
 #### Mumbai
