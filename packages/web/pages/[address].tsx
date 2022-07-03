@@ -1,10 +1,9 @@
-import { getNftsForOwner } from "@alch/alchemy-sdk";
+import axios from "axios";
 import { ethers } from "ethers";
 import type { GetServerSideProps, NextPage } from "next";
 
 import { Layout } from "../components/Layout";
 import { SketchComponent } from "../components/SketchComponent";
-import { alchemy } from "../lib/alchemy";
 import { NFT } from "../types/nft";
 
 export const SBT_CONTRACT_ADDRESSES = ["0x60576A64851C5B42e8c57E3E4A5cF3CF4eEb2ED6"];
@@ -37,15 +36,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
-  const { ownedNfts } = await getNftsForOwner(alchemy, context.params.address, {
-    contractAddresses: SBT_CONTRACT_ADDRESSES,
-  });
-  const nfts: NFT[] = ownedNfts.map((nft) => {
-    return {
-      tokenId: nft.tokenId,
-      phrase: nft.title,
-    };
-  });
+  const { data } = await axios.get(`http://localhost:3000/api/${context.params.address}`);
+  const nfts = data;
   return {
     props: {
       nfts,
