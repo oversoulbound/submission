@@ -3,8 +3,10 @@ import { ethers } from "ethers";
 import type { GetServerSideProps, NextPage } from "next";
 
 import { Layout } from "../components/Layout";
-import { alchemy } from "../lib/alchemy";
 import { NFT } from "../types/nft";
+import { Helmet } from "react-helmet";
+import Iframe from "react-iframe";
+import { SketchComponent } from "../components/SketchComponent";
 
 export const SBT_CONTRACT_ADDRESSES = ["0x60576A64851C5B42e8c57E3E4A5cF3CF4eEb2ED6"];
 
@@ -13,10 +15,11 @@ interface IndexPageProps {
 }
 
 const IndexPage: NextPage<IndexPageProps> = ({ nfts }) => {
-  const iframeSource = "https://opensea.io/";
+  const iframeSource =
+    "https://oversoul.vercel.app/creative/index.html?seed=0xB6Ac3Fe610d1A4af359FE8078d4c350AB95E812b";
   return (
     <Layout>
-      <div dangerouslySetInnerHTML={{ __html: iframeSource }}></div>
+      <SketchComponent nfts={nfts} />
     </Layout>
   );
 };
