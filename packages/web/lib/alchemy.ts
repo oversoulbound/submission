@@ -1,9 +1,13 @@
 import { initializeAlchemy, Network } from "@alch/alchemy-sdk";
 
-const settings = {
+export const alchemyTestNet = initializeAlchemy({
   apiKey: "demo",
   network: Network.MATIC_MUMBAI,
   maxRetries: 10,
-};
+});
 
-export const alchemy = initializeAlchemy(settings);
+export const alchemyMainnet = initializeAlchemy({
+  apiKey: "demo",
+  network: Network.MATIC_MAINNET,
+  maxRetries: 10,
+});

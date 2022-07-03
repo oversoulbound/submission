@@ -5,7 +5,7 @@ import { Text, Grid, VStack, GridItem, Box } from "@chakra-ui/react";
 import { Link } from "../components/Link";
 import { ConnectWallet } from "../components/ConnectWallet";
 import { Layout } from "../components/Layout";
-import { alchemy } from "../lib/alchemy";
+import { alchemyTestNet } from "../lib/alchemy";
 import { getNftsForCollection } from "@alch/alchemy-sdk";
 import { NFT } from "../types/nft";
 import { COLLECTION_ADDRESS } from "../lib/constant";
@@ -43,10 +43,9 @@ const IndexPage: NextPage<IndexPageProps> = ({ nfts }) => {
 export default IndexPage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await getNftsForCollection(alchemy, COLLECTION_ADDRESS);
-
+  const data = await getNftsForCollection(alchemyTestNet, COLLECTION_ADDRESS);
+  console.log(data);
   const result: NFT[] = data.nfts.map((nft) => {
-    console.log(nft);
     return {
       tokenId: nft.tokenId,
       phrase: nft.title,

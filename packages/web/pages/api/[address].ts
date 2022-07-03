@@ -2,7 +2,7 @@ import Cors from "cors";
 import { getNftsForOwner } from "@alch/alchemy-sdk";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { alchemy } from "../../lib/alchemy";
+import { alchemyMainnet } from "../../lib/alchemy";
 import { NFT } from "../../types/nft";
 import { SBT_CONTRACT_ADDRESS } from "../../lib/constant";
 
@@ -30,7 +30,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (typeof address != "string") {
     return res.status(500).send({ success: false });
   }
-  const { ownedNfts } = await getNftsForOwner(alchemy, address, {
+  const { ownedNfts } = await getNftsForOwner(alchemyMainnet, address, {
     contractAddresses: [SBT_CONTRACT_ADDRESS],
   });
   const nfts: NFT[] = ownedNfts.map((nft) => {
