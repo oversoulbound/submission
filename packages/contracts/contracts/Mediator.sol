@@ -77,8 +77,8 @@ contract Mediator is ERC165, IERC721, IERC721Metadata {
     address owner = tokenIdToAddress(tokenId);
     string memory ownerAddressString = _bytesToString(abi.encodePacked(owner));
     bytes memory metadata = abi.encodePacked(
-      '{"name":"Oversoul Mediator #',
-      Strings.toString(tokenId),
+      '{"name":"Oversoul Mediator of ',
+      ownerAddressString,
       '","description": "A visualised onchain identity with SBT"',
       ',"animation_url":"',
       abi.encodePacked(animationURLBase, ownerAddressString),
